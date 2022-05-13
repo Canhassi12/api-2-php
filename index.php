@@ -6,14 +6,18 @@ include 'Routes.php';
 Routes::methodGet('/students', function() {
     $db = new Data();
 
-    $results = $db->get();
+    $response = $db->get();
 
-    echo json_encode($results);
+    echo json_encode($response);
 });
 
 Routes::methodPost('/students', function(): void
 {
     $db = new Data();
 
-    $db->post();
+    $data = json_decode(file_get_contents('php://input'), true); 
+
+    $db->post($data);
+
+    echo json_encode($data);
 });

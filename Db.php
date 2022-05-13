@@ -11,7 +11,6 @@ class Data {
         $this->conn = new PDO('mysql:host=localhost;dbname=fds', 'root', 'root'); 
     }
 
-
     public function get() 
     {
         $sql = "SELECT * from fds";
@@ -20,12 +19,12 @@ class Data {
         return $query->fetchAll();   
     }
 
-    public function post() 
+    public function post($data) 
     {
         $student = new Students(
-            name: $_POST['name'],
-            age: $_POST['age'],
-            score: $_POST['score']
+            name: $data['name'],
+            age: $data['age'],
+            score: $data['score']
         );
 
         $sql = "INSERT INTO fds (name, age, score) VALUES (
